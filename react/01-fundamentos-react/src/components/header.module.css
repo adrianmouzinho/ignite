@@ -1,0 +1,20 @@
+.header {
+  height: 100px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  background-color: var(--gray-800);
+}
+
+.header img {
+  height: 60px;
+}
+
+.header strong {
+  font-weight: 700;
+  font-size: 24px;
+}
