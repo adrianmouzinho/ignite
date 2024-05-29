@@ -32,6 +32,10 @@
   transform: translateY(-50%);
 }
 
+.profile strong {
+  color: var(--gray-100);
+}
+
 .profile span {
   font-size: 14px;
   color: var(--gray-400);
