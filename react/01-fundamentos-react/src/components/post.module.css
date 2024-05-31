@@ -69,6 +69,7 @@
   height: 96px;
   padding: 12px 16px;
   line-height: 140%;
+  color: var(--gray-300);
   background-color: var(--gray-900);
   border-radius: 8px;
   border: 1px solid var(--green-500);
@@ -93,12 +94,17 @@
   transition: background-color 300ms;
 }
 
-.form button:hover {
+.form button:not(:disabled):hover {
   background-color: var(--green-300);
 }
 
 .form button:focus {
   box-shadow: 0 0 0 2px var(--white);
+}
+
+.form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .comments {
