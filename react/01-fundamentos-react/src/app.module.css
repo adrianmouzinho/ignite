@@ -1,9 +1,19 @@
 .wrapper {
   max-width: 1168px;
-  padding: 0 24px;
-  margin: 32px auto 0;
+  padding: 32px 24px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 256px 1fr;
   gap: 32px;
   align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+  
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
 }

@@ -106,3 +106,19 @@
   flex-direction: column;
   gap: 24px;
 }
+
+@media (max-width: 640px) {
+  .post {
+    padding: 32px;
+  }
+
+  .post > header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .author img {
+    width: 48px;
+  }
+}

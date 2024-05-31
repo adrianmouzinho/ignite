@@ -78,3 +78,9 @@
 .action:hover {
   color: var(--gray-100);
 }
+
+@media (max-width: 640px) {
+  .comment > img {
+    width: 48px;
+  }
+}
