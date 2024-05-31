@@ -4,13 +4,6 @@
   gap: 16px;
 }
 
-.comment > img {
-  width: 64px;
-  aspect-ratio: 1 / 1;
-  border-radius: 8px;
-  background-color: var(--gray-300);
-}
-
 .comment > div {
   flex: 1;
   display: flex;
