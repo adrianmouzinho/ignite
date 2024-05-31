@@ -100,3 +100,9 @@
 .form button:focus {
   box-shadow: 0 0 0 2px var(--white);
 }
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
