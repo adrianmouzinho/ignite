@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { format, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
@@ -7,9 +7,34 @@ import { Comment } from './comment'
 
 import styles from './post.module.css'
 
-export function Post({ author, content, publishedAt }) {
-  const [comments, setComments] = useState([])
+interface Author {
+  name: string
+  role: string
+  avatarUrl: string
+}
+
+interface Content {
+  type: 'paragraph' | 'link'
+  content: string
+}
+
+export interface Post {
+  id: number
+  author: Author
+  content: Content[]
+  publishedAt: Date
+}
+
+interface PostProps {
+  post: Post
+}
+
+export function Post({ post }: PostProps) {
+  const { author, content, publishedAt } = post
+
+  const [comments, setComments] = useState<Comment[]>([])
   const [newCommentText, setNewCommentText] = useState('')
+
 
   const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR,
@@ -20,29 +45,29 @@ export function Post({ author, content, publishedAt }) {
     addSuffix: true,
   })
 
-  function handleCrateNewComment(event) {
+  function handleCrateNewComment(event: FormEvent) {
     event.preventDefault()
 
     if (!newCommentText) {
       return
     }
 
-    setComments((comments) => [newCommentText, ...comments])
+    setComments((comments) => [{ content: newCommentText, likes: 0 }, ...comments])
     setNewCommentText('')
   }
 
-  function handleDeleteComment(commentToDelete) {
+  function handleDeleteComment(commentToDelete: string) {
     setComments((comments) => {
-      return comments.filter((comment) => comment !== commentToDelete)
+      return comments.filter((comment) => comment.content !== commentToDelete)
     })
   }
 
-  function handleNewCommentChange(event) {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('')
     setNewCommentText(event.target.value)
   }
 
-  function handleNewCommentInvalid(event) {
+  function handleNewCommentInvalid(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Esse campo é obrigatório!')
   }
 
@@ -90,7 +115,7 @@ export function Post({ author, content, publishedAt }) {
         {comments.map((comment) => {
           return (
             <Comment 
-              key={comment} 
+              key={comment.content} 
               content={comment} 
               onDeleteComment={handleDeleteComment}
             />
